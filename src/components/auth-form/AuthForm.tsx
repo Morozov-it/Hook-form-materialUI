@@ -4,6 +4,7 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useForm, SubmitHandler, Controller, useFormState } from 'react-hook-form';
+import { loginValidation, passwordValidation } from './validation';
 
 type FormInputs = {
     login: string;
@@ -11,13 +12,18 @@ type FormInputs = {
 };//тип названий каждого элемента формы
 
 export const AuthForm: React.FC = () => {
-    const { control, handleSubmit } = useForm<FormInputs>()
+    const { control, reset, handleSubmit } = useForm<FormInputs>({
+        mode: 'onBlur',
+    })
 
     //взаимодействие с состоянием формы, необходимо передать объект control из хука useForm
     const { errors } = useFormState({control})
 
     //функция по нажатию отправки
-    const onSubmit: SubmitHandler<FormInputs> = data => console.log(data);
+    const onSubmit: SubmitHandler<FormInputs> = (data) => {
+        console.log(data);
+        reset()
+    }
 
     return (
         <div className='auth-form'>
@@ -31,7 +37,7 @@ export const AuthForm: React.FC = () => {
                 <Controller
                     defaultValue=''
                     control={control}
-                    rules={{ required: 'login is required' }}//правила для валидации формы
+                    rules={loginValidation}//правила для валидации формы
                     name="login"//имя нужного инпута
                     render={({ field }) => (
                         <TextField
@@ -48,7 +54,7 @@ export const AuthForm: React.FC = () => {
                 <Controller
                     control={control}
                     defaultValue=''
-                    rules={{ required: 'password is required' }}
+                    rules={passwordValidation}
                     name='password'
                     render={({ field }) => (
                         <TextField
@@ -63,7 +69,6 @@ export const AuthForm: React.FC = () => {
                         />
                     )}
                 />
-
                 <Button
                     type='submit'
                     variant="outlined"
@@ -71,7 +76,7 @@ export const AuthForm: React.FC = () => {
                     sx={{
                         marginTop: 2
                     }}
-                >Confirm</Button>
+                >sign in</Button>
             </form>
         </div>
     )
