@@ -1,11 +1,12 @@
 import React from 'react';
+import { AuthPage } from './pages/auth-page';
 
 const App: React.FC = () => {
   
 
   return (
-    <div>
-      Hello
+    <div className='app'>
+      <AuthPage />
     </div>
   );
 };
