@@ -1,5 +1,6 @@
 import React from 'react';
 import { AuthPage } from './pages/auth-page';
+import './App.css'
 
 const App: React.FC = () => {
   

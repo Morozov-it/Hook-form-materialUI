@@ -1,0 +1,17 @@
+.auth-form {
+    width: 50vw;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.auth-form__subtitle {
+    color: rgb(167, 166, 166);
+}
+.auth-form__body {
+    align-self: stretch;
+}
